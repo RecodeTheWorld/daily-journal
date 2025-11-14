@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Journal</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>Journal</h1>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-view="today">
+                    <span class="icon">✍️</span>
+                    <span>Today</span>
+                </button>
+                <button class="nav-btn" data-view="past">
+                    <span class="icon">📖</span>
+                    <span>Past Entries</span>
+                </button>
+                <button class="nav-btn" data-view="tags">
+                    <span class="icon">🏷️</span>
+                    <span>Tags</span>
+                </button>
+                <button class="nav-btn" data-view="export">
+                    <span class="icon">📤</span>
+                    <span>Export</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Today's Entry View -->
+            <section id="today-view" class="view active">
+                <div class="view-header">
+                    <h2 id="today-date"></h2>
+                </div>
+                
+                <div class="entry-form">
+                    <textarea id="entry-text" class="entry-textarea" placeholder="Write your thoughts and reflections..."></textarea>
+                    
+                    <div class="entry-controls">
+                        <div class="tags-input">
+                            <input type="text" id="tag-input" placeholder="Add tags (comma-separated)" class="tag-input-field">
+                            <div id="tags-list" class="tags-list"></div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button id="save-btn" class="btn btn-primary">Save Entry</button>
+                            <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="entry-status" class="status-message"></div>
+            </section>
+
+            <!-- Past Entries View -->
+            <section id="past-view" class="view">
+                <div class="view-header">
+                    <h2>Past Entries</h2>
+                    <input type="date" id="date-filter" class="date-filter">
+                </div>
+                
+                <div id="entries-list" class="entries-list">
+                    <p class="empty-message">No entries found</p>
+                </div>
+            </section>
+
+            <!-- Tags View -->
+            <section id="tags-view" class="view">
+                <div class="view-header">
+                    <h2>Tags</h2>
+                </div>
+                
+                <div id="tags-container" class="tags-container">
+                    <p class="empty-message">No tags yet</p>
+                </div>
+            </section>
+
+            <!-- Export View -->
+            <section id="export-view" class="view">
+                <div class="view-header">
+                    <h2>Export Data</h2>
+                </div>
+                
+                <div class="export-options">
+                    <div class="export-format">
+                        <h3>Export Format</h3>
+                        <label class="radio-label">
+                            <input type="radio" name="export-format" value="json" checked>
+                            <span>JSON</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="export-format" value="csv">
+                            <span>CSV</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="export-format" value="txt">
+                            <span>Text</span>
+                        </label>
+                    </div>
+                    
+                    <div class="export-range">
+                        <h3>Date Range</h3>
+                        <div class="date-inputs">
+                            <input type="date" id="export-start-date" placeholder="Start date" class="date-input">
+                            <span>to</span>
+                            <input type="date" id="export-end-date" placeholder="End date" class="date-input">
+                        </div>
+                    </div>
+                    
+                    <button id="export-btn" class="btn btn-primary btn-large">Export Data</button>
+                    <button id="backup-btn" class="btn btn-secondary btn-large">Backup All Data</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for viewing full entry -->
+    <div id="entry-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-date"></h2>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
